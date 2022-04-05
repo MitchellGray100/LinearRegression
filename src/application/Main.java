@@ -1,7 +1,11 @@
 package application;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -21,6 +25,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -31,6 +37,13 @@ public class Main extends Application {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void start(Stage stage) throws FileNotFoundException {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open CSV File");
+		Button fileImporter = new Button();
+		fileImporter.setText("Import CSV");
+		ExtensionFilter filter = new ExtensionFilter("Data Files", "*.csv");
+		fileChooser.getExtensionFilters().addAll(filter);
+
 		VBox right = new VBox();
 		Text text = new Text();
 		Text rtext = new Text();
@@ -65,7 +78,7 @@ public class Main extends Application {
 		xAxisTitle.setPromptText("X Axis Title");
 		yAxisTitle.setPromptText("Y Axis Title");
 		chartTitle.setPromptText("Chart Title");
-		right.getChildren().addAll(text, xAxisTitle, yAxisTitle, chartTitle, submit, rbox, mbox, bbox);
+		right.getChildren().addAll(text, xAxisTitle, yAxisTitle, chartTitle, submit, rbox, mbox, bbox, fileImporter);
 		right.setSpacing(15);
 		vbox.setPrefSize(DataInput.USE_COMPUTED_SIZE, 0);
 		Pane root = new Pane();
@@ -91,7 +104,94 @@ public class Main extends Application {
 		sc.setCreateSymbols(true);
 
 		sc.getData().addAll(series1, series2);
+		fileImporter.setOnAction(e -> {
+			File selectedFile = fileChooser.showOpenDialog(stage);
+			vbox.getChildren().clear();
+			vbox.getChildren().add(initial);
+			initial.x.setText("");
+			initial.y.setText("");
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
+				String line = reader.readLine();
+				String[] lineArray = line.split(",");
+				if (lineArray.length != 2) {
+					sc.getXAxis().setLabel("Incorrect Format");
+					sc.getYAxis().setLabel("Incorrect Format");
+					r.setText("");
+					m.setText("");
+					b.setText("");
+					xAxisTitle.setText("");
+					yAxisTitle.setText("");
+					chartTitle.setText("");
+					sc.setTitle("");
+					sc.getData().clear();
+					highestNum = 0;
+					return;
+				}
+				lineArray[0] = lineArray[0].substring(3);
+				sc.getXAxis().setLabel(lineArray[0]);
+				sc.getYAxis().setLabel(lineArray[1]);
+				xAxisTitle.setText(lineArray[0]);
+				yAxisTitle.setText(lineArray[1]);
+				chartTitle.setText(lineArray[1] + " vs " + lineArray[0]);
 
+				line = reader.readLine();
+				if (line != null) {
+					lineArray = line.split(",");
+					((DataInput) (vbox.getChildren().get(0))).x.setText(lineArray[0]);
+					((DataInput) (vbox.getChildren().get(0))).y.setText(lineArray[1]);
+
+				}
+				line = reader.readLine();
+				while (line != null) {
+					lineArray = line.split(",");
+					highestNum++;
+					vbox.getChildren().add(new DataInput(highestNum, lineArray[0], lineArray[1]));
+					line = reader.readLine();
+
+				}
+				submit.fire();
+				reader.close();
+			} catch (FileNotFoundException e1) {
+				sc.getXAxis().setLabel("FILE NOT FOUND");
+				sc.getYAxis().setLabel("FILE NOT FOUND");
+				r.setText("");
+				m.setText("");
+				b.setText("");
+				xAxisTitle.setText("");
+				yAxisTitle.setText("");
+				chartTitle.setText("");
+				sc.setTitle("");
+				sc.getData().clear();
+				highestNum = 0;
+				return;
+			} catch (IOException e1) {
+				sc.getXAxis().setLabel("IO EXCEPTION");
+				sc.getYAxis().setLabel("IO EXCEPTION");
+				r.setText("");
+				m.setText("");
+				b.setText("");
+				xAxisTitle.setText("");
+				yAxisTitle.setText("");
+				chartTitle.setText("");
+				sc.setTitle("");
+				sc.getData().clear();
+				highestNum = 0;
+				return;
+			} catch (NullPointerException e1) {
+				r.setText("");
+				m.setText("");
+				b.setText("");
+				xAxisTitle.setText("");
+				yAxisTitle.setText("");
+				chartTitle.setText("");
+				sc.setTitle("");
+				sc.getData().clear();
+				highestNum = 0;
+
+			}
+
+		});
 		Scene scene = new Scene(root, 1200, 400);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
@@ -229,6 +329,48 @@ public class Main extends Application {
 			x.setPromptText("x" + this.num);
 			y.setPromptText("y" + this.num);
 
+			add.setOnAction(e -> {
+				highestNum++;
+				vbox.getChildren().add(new DataInput(highestNum));
+
+			});
+			remove.setOnAction(e -> {
+				highestNum--;
+				vbox.getChildren().remove(this.num);
+				Node node = null;
+				for (int i = 0; i < vbox.getChildren().size(); i++) {
+					node = vbox.getChildren().get(i);
+					if (((DataInput) node).num != 0 && ((DataInput) node).num >= this.num) {
+						((DataInput) node).num--;
+					}
+
+					((DataInput) node).x.setPromptText("x" + ((DataInput) node).num);
+					((DataInput) node).y.setPromptText("y" + ((DataInput) node).num);
+				}
+				x = null;
+				y = null;
+				add = null;
+				remove = null;
+
+			});
+		}
+
+		public DataInput(int num, String xInput, String yInput) {
+			if (num == 0) {
+				remove.setVisible(false);
+				remove.disableProperty().set(false);
+			}
+			empty.setVisible(false);
+			empty.disableProperty().set(false);
+
+			this.getChildren().addAll(x, y, add, remove, empty);
+			add.setText("+");
+			remove.setText("X");
+			this.num = num;
+			x.setPromptText("x" + this.num);
+			y.setPromptText("y" + this.num);
+			x.setText((xInput));
+			y.setText((yInput));
 			add.setOnAction(e -> {
 				highestNum++;
 				vbox.getChildren().add(new DataInput(highestNum));
