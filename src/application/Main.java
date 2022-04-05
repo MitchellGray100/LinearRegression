@@ -110,6 +110,8 @@ public class Main extends Application {
 			ArrayList xValues = new ArrayList<Integer>();
 			ArrayList yValues = new ArrayList<Integer>();
 			boolean error = false;
+
+			sc.getData().clear();
 			if (vbox.getChildren().size() <= 1) {
 				error = true;
 				sc.getXAxis().setLabel("NOT ENOUGH DATA. TRY AGAIN");
@@ -142,6 +144,7 @@ public class Main extends Application {
 			if (error) {
 				return;
 			}
+			sc.getData().addAll(series1, series2);
 
 			int n = xValues.size();
 
