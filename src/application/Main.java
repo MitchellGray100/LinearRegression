@@ -127,8 +127,8 @@ public class Main extends Application {
 				try {
 					((DataInput) node).x.setStyle("-fx-control-inner-background: #FFFFFF ");
 					((DataInput) node).y.setStyle("-fx-control-inner-background: #FFFFFF ");
-					series1.getData().add(new XYChart.Data(Integer.parseInt(((DataInput) node).x.getText()),
-							Integer.parseInt(((DataInput) node).y.getText())));
+					series1.getData().add(new XYChart.Data(Double.parseDouble(((DataInput) node).x.getText()),
+							Double.parseDouble(((DataInput) node).y.getText())));
 					xValues.add(Double.parseDouble(((DataInput) node).x.getText()));
 					yValues.add(Double.parseDouble(((DataInput) node).y.getText()));
 				} catch (Exception exception) {
