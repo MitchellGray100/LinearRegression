@@ -33,22 +33,39 @@ public class Main extends Application {
 	public void start(Stage stage) throws FileNotFoundException {
 		VBox right = new VBox();
 		Text text = new Text();
-		Text r = new Text();
-		Text m = new Text();
-		Text b = new Text();
+		Text rtext = new Text();
+		Text mtext = new Text();
+		Text btext = new Text();
+		HBox rbox = new HBox();
+		HBox mbox = new HBox();
+		HBox bbox = new HBox();
+		rtext.setText("The r-squared value is: ");
+		mtext.setText("The slope value is: ");
+		btext.setText("The intercept value is: ");
+		TextField r = new TextField();
+		TextField m = new TextField();
+		TextField b = new TextField();
+		rbox.getChildren().addAll(rtext, r);
+		mbox.getChildren().addAll(mtext, m);
+		bbox.getChildren().addAll(btext, b);
+		mtext.setFont(new Font(16));
+		btext.setFont(new Font(16));
+		r.setEditable(false);
+		m.setEditable(false);
+		b.setEditable(false);
 		Button submit = new Button();
 		submit.setText("Submit All Info");
 		text.setText("Graph Information");
 		text.setFont(Font.font(24));
-		r.setText("The r-squared value is:");
-		r.setFont(Font.font(16));
+		rtext.setText("The r-squared value is:");
+		rtext.setFont(Font.font(16));
 		TextField xAxisTitle = new TextField();
 		TextField yAxisTitle = new TextField();
 		TextField chartTitle = new TextField();
 		xAxisTitle.setPromptText("X Axis Title");
 		yAxisTitle.setPromptText("Y Axis Title");
 		chartTitle.setPromptText("Chart Title");
-		right.getChildren().addAll(text, xAxisTitle, yAxisTitle, chartTitle, submit, r, m, b);
+		right.getChildren().addAll(text, xAxisTitle, yAxisTitle, chartTitle, submit, rbox, mbox, bbox);
 		right.setSpacing(15);
 		vbox.setPrefSize(DataInput.USE_COMPUTED_SIZE, 0);
 		Pane root = new Pane();
@@ -161,9 +178,9 @@ public class Main extends Application {
 //			System.out.println(mValue);
 //			System.out.println(bValue);
 
-			r.setText("The r-squared value is: " + Math.pow(rValue, 2));
-			m.setText("The slope value is: " + mValue);
-			b.setText("The intercept value is: " + bValue);
+			r.setText("" + Math.pow(rValue, 2));
+			m.setText("" + mValue);
+			b.setText("" + bValue);
 
 			double max = Double.NEGATIVE_INFINITY;
 			for (int i = 0; i < xValues.size(); i++) {
