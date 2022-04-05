@@ -58,8 +58,8 @@ Example usage of the program with an r-squared of 0.041
 Example of importing a .csv file.
 ![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo7.png)
   
-  
-The csv file used
+ 
+The csv file used<br>
 ![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo8.png)
 
 </br>
