@@ -137,7 +137,6 @@ public class Main extends Application {
 					((DataInput) node).y.setStyle("-fx-control-inner-background: #FF9494 ");
 					sc.getXAxis().setLabel("DATA IS EMPTY. TRY AGAIN");
 					sc.getYAxis().setLabel("DATA IS EMPTY. TRY AGAIN");
-					r.setText("The r-squared value is: ");
 					error = true;
 				}
 			}
