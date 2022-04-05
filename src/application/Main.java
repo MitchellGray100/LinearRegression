@@ -28,6 +28,7 @@ public class Main extends Application {
 	private VBox vbox = new VBox();
 	private ArrayList<XYChart.Data> data = new ArrayList<XYChart.Data>();
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void start(Stage stage) throws FileNotFoundException {
 		VBox right = new VBox();
@@ -81,7 +82,7 @@ public class Main extends Application {
 		stage.show();
 		stage.getIcons().add(new Image(new FileInputStream("src/application/favicon.png")));
 
-		submit.setOnMouseClicked(e -> {
+		submit.setOnAction(e -> {
 
 			series1.getData().clear();
 			series2.getData().clear();
@@ -157,8 +158,8 @@ public class Main extends Application {
 
 			double mValue = numerator / denominator;
 			double bValue = averageY - mValue * averageX;
-			System.out.println(mValue);
-			System.out.println(bValue);
+//			System.out.println(mValue);
+//			System.out.println(bValue);
 
 			r.setText("The r-squared value is: " + Math.pow(rValue, 2));
 			m.setText("The slope value is: " + mValue);
@@ -198,12 +199,12 @@ public class Main extends Application {
 			x.setPromptText("x" + this.num);
 			y.setPromptText("y" + this.num);
 
-			add.setOnMouseClicked(e -> {
+			add.setOnAction(e -> {
 				highestNum++;
 				vbox.getChildren().add(new DataInput(highestNum));
 
 			});
-			remove.setOnMouseClicked(e -> {
+			remove.setOnAction(e -> {
 				highestNum--;
 				vbox.getChildren().remove(this.num);
 				Node node = null;
