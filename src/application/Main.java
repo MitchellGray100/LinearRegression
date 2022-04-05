@@ -74,7 +74,7 @@ public class Main extends Application {
 
 		sc.getData().addAll(series1, series2);
 
-		Scene scene = new Scene(root, 1200, 500);
+		Scene scene = new Scene(root, 1200, 400);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle("Linear Regression Calculator");
@@ -85,6 +85,7 @@ public class Main extends Application {
 
 			series1.getData().removeAll();
 			series2.getData().removeAll();
+			sc.getData().removeAll();
 			sc.getXAxis().setLabel(xAxisTitle.getText());
 			sc.getYAxis().setLabel(yAxisTitle.getText());
 			sc.setTitle(chartTitle.getText());
