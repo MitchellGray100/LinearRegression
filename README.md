@@ -80,7 +80,7 @@ Full usage of program using ONLY the keyboard.
 ![Full Usage](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/gif3.gif)
   
   
-.csv files being imported.
+.csv files being imported.<br>
 ![csv import](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/gif4.gif)
 
 
