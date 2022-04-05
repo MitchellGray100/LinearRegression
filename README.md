@@ -14,7 +14,7 @@ ___
 # Use
 
 <h3>
-  To Play, just download the .exe file: https://github.com/MitchellGray100/Chess/raw/main/Chess.exe.
+  To Use, just download the .exe file: https://github.com/MitchellGray100/Chess/raw/main/Chess.exe.
   
   <br>
   <br>If you gen a JNI error, make sure to download [java](https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.exe).
@@ -30,8 +30,28 @@ ___
 
 <h3>
 
-Backend Representation of the game (Not the actual GUI)
-![Image of Start of Game](https://raw.githubusercontent.com/MitchellGray100/Chess/main/chess%20board%20for%20github%208.0.png)
+This is what the program looks like when it first opens.
+![Image of Start of Program](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo1.png)
+  
+ 
+Example usage of the program with an r-squared of 1.
+![Example usage number 1](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo2.png)
+  
+  
+Example of Not Enough Data Error.
+![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo3.png)
+  
+  
+Example of Empty Data Error.
+![Empty Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo4.png)
+  
+  
+Lots of data points with the scroll bar and xn,yn labels for each point.
+![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo5.png)
+  
+  
+Example usage of the program with an r-squared of 0.041
+![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo6.png)
 
 </br>
 
