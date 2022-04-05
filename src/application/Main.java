@@ -110,6 +110,17 @@ public class Main extends Application {
 			ArrayList xValues = new ArrayList<Integer>();
 			ArrayList yValues = new ArrayList<Integer>();
 			boolean error = false;
+			if (vbox.getChildren().size() <= 1) {
+				error = true;
+				sc.getXAxis().setLabel("NOT ENOUGH DATA. TRY AGAIN");
+				sc.getYAxis().setLabel("NOT ENOUGH DATA. TRY AGAIN");
+				r.setText("");
+				m.setText("");
+				b.setText("");
+			}
+			if (error) {
+				return;
+			}
 			for (Node node : vbox.getChildren()) {
 				try {
 					((DataInput) node).x.setStyle("-fx-control-inner-background: #FFFFFF ");
