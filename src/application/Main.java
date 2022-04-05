@@ -83,9 +83,9 @@ public class Main extends Application {
 
 		submit.setOnMouseClicked(e -> {
 
-			series1.getData().removeAll();
-			series2.getData().removeAll();
-			sc.getData().removeAll();
+			series1.getData().clear();
+			series2.getData().clear();
+//			sc.getData().clear();
 			sc.getXAxis().setLabel(xAxisTitle.getText());
 			sc.getYAxis().setLabel(yAxisTitle.getText());
 			sc.setTitle(chartTitle.getText());
