@@ -59,8 +59,16 @@ Example usage of the program with an r-squared of 0.041
 
 <h3>
 
-Promotion buttons being clicked. Whatever button is selected is what the pawn will promote to when promoting.
-![Promotion Buttons switching](https://raw.githubusercontent.com/MitchellGray100/Chess/main/readMeImages/ChessGIF.gif)
+Adding data points and showing the scrollbar.
+![Adding data](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/gif1.gif)
+  
+  
+Removing data points and showing the labels changing.
+![Removing data](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/gif2.gif)
+  
+  
+Full usage of program using ONLY the keyboard.
+![Full Usage](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/gif3.gif)
 
 
 
