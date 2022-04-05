@@ -53,6 +53,14 @@ Lots of data points with the scroll bar and xn,yn labels for each point.
   
 Example usage of the program with an r-squared of 0.041
 ![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo6.png)
+  
+  
+Example of importing a .csv file.
+![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo7.png)
+  
+  
+The csv file used
+![Not Enough Data Error](https://raw.githubusercontent.com/MitchellGray100/LinearRegression/main/src/application/Photo8.png)
 
 </br>
 
