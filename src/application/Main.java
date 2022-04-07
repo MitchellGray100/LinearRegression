@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -20,11 +22,12 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -81,7 +84,7 @@ public class Main extends Application {
 		right.getChildren().addAll(text, xAxisTitle, yAxisTitle, chartTitle, submit, rbox, mbox, bbox, fileImporter);
 		right.setSpacing(15);
 		vbox.setPrefSize(DataInput.USE_COMPUTED_SIZE, 0);
-		Pane root = new Pane();
+		GridPane root = new GridPane();
 		BorderPane holder = new BorderPane();
 		ScrollPane scroll = new ScrollPane();
 		scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -303,6 +306,17 @@ public class Main extends Application {
 			series2.getData().add(new XYChart.Data(max, mValue * max + bValue));
 //			series2.getData().add(new XYChart.Data(6.4, 15.6));
 		});
+		NumberBinding maxScale = Bindings.min(root.widthProperty().divide(1200), root.heightProperty().divide(400));
+
+		final int width = 1200;
+		final int height = 400;
+		Scale scale = new Scale(1, 1, 0, 0);
+
+		scale.xProperty().bind(root.widthProperty().divide(width));
+		scale.yProperty().bind(root.heightProperty().divide(height));
+		root.getTransforms().add(scale);
+		stage.setMinHeight(400);
+		stage.setMinWidth(1200);
 	}
 
 	public class DataInput extends HBox {
