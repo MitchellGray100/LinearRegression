@@ -14,10 +14,9 @@ ___
 # Use
 
 <h3>
-  EXE coming soon. Need Desktop computer to make the file.
-<!--   To Use, just download the .exe file: https://github.com/MitchellGray100/Chess/raw/main/Chess.exe. -->
-  
+  To Use, just download the .exe file: https://github.com/MitchellGray100/LinearRegression/raw/main/EXE/LinearRegression.exe.
   <br>
+  
   <br>If you gen a JNI error, make sure to download [java](https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.exe).
   
 
